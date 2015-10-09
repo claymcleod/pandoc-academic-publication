@@ -18,7 +18,3 @@ h1:not(.title)::before {
   text-align: right;
   width: 100%;
 }
-
-.references {
-  border-top: thin #CCC solid;
-}

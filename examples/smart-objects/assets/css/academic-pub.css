@@ -82,6 +82,10 @@ img {
   height: 100%;
 }
 
+.references {
+  border-top: thin #CCC solid;
+}
+
 /* Printing */
 
 @media print {
