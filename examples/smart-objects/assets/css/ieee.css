@@ -5,12 +5,14 @@ body {
   margin-right: 25%;
   margin-top: 5em;
   text-align: justify;
+  line-height: 1.2em;
 }
 
 #main {
   -webkit-column-count: 1;
   -moz-column-count: 1;
   column-count: 1;
+  font-weight: lighter;
 }
 
 /* Metadata declarations */
@@ -38,8 +40,9 @@ h1 {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  text-align: center;
+  font-weight: normal;
   margin: auto;
+  text-align: center;
 }
 
 h1:not(.title),
