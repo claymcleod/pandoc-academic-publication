@@ -134,7 +134,7 @@ img {
     margin: auto;
     font-weight: bold;
     border-top: none;
-    padding-top: 1in;
+    margin-top: 1in;
   }
 
   /* Automatic link showing */
