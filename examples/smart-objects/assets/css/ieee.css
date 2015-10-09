@@ -123,20 +123,6 @@ img {
     page-break-before: always;
   }
 
-  .references {
-    page-break-before: always;
-  }
-
-  /* Add references page */
-
-  .references::before {
-    content: "References";
-    margin: auto;
-    font-weight: bold;
-    border-top: none;
-    margin-top: 1in;
-  }
-
   /* Automatic link showing */
 
   a[href]:after {
