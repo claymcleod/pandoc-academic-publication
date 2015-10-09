@@ -117,7 +117,7 @@ img {
     display: none;
   }
 
-  h1.not(.title) {
+  h1:not(.title) {
     page-break-before: always;
   }
 }
