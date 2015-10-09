@@ -104,12 +104,11 @@ img {
 @media print {
   @page {
     size: auto;
-    margin: 0mm;
+      margin-left: 5%;
+      margin-right: 5%;
    }
 
   body {
-    margin-left: 5%;
-    margin-right: 5%;
     font-size: 12pt;
   }
 
@@ -117,7 +116,7 @@ img {
     display: none;
   }
 
-  h1 {
+  h1:not(.title) {
     page-break-before: always;
   }
 }
