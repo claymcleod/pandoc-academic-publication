@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,300,500,700);
+
 body {
   margin: auto;
   margin-left: 25%;
@@ -41,10 +43,11 @@ h1 {
 }
 
 h1, h2, h3, h4, h5, h6 {
+  font-family: 'Ubuntu', sans-serif;
   font-weight: normal;
+  line-height: 1.1;
   margin: auto;
   text-align: center;
-  line-height: 1.1;
 }
 
 nav {
