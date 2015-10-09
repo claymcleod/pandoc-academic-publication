@@ -24,7 +24,8 @@ body {
 
 .author,
 .date {
-  font-size: 20px;
+  font-size: 26px;
+  padding-bottom: 1em;
 }
 
 .abstract {
