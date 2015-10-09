@@ -131,8 +131,10 @@ img {
 
   .references::before {
     content: "References";
-    text-align: center;
+    margin: auto;
     font-weight: bold;
+    border-top: none;
+    padding-top: 1in;
   }
 
   /* Automatic link showing */
