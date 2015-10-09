@@ -13,6 +13,7 @@ body {
   -moz-column-count: 1;
   column-count: 1;
   font-weight: lighter;
+  font-size: 14pt;
 }
 
 /* Metadata declarations */
