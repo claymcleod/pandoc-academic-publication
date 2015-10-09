@@ -99,7 +99,7 @@ img {
   border-top: thin #CCC solid;
 }
 
-/* Printing */
+/* Printing media */
 
 @media print {
   @page {
@@ -117,9 +117,18 @@ img {
     display: none;
   }
 
+  /* Page breaks */
+
   h1:not(.title) {
     page-break-before: always;
   }
+
+  .references {
+    border-top: thin #CCC solid;
+    page-break-before: always;
+  }
+
+  /* Automatic link showing */
 
   a[href]:after {
     content: " (" attr(href) ") ";
