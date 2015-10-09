@@ -13,6 +13,7 @@ body {
   -moz-column-count: 1;
   column-count: 1;
   font-weight: lighter;
+  font-size: 14pt;
 }
 
 /* Metadata declarations */
@@ -95,4 +96,13 @@ img {
 
 .references {
   border-top: thin #CCC solid;
+}
+
+/* Printing */
+
+@media print {
+  body {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
 }
