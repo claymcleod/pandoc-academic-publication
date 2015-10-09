@@ -102,6 +102,11 @@ img {
 /* Printing */
 
 @media print {
+  @page {
+    size: auto;
+    margin: 0mm;
+   }
+
   body {
     margin-left: 5%;
     margin-right: 5%;
@@ -110,5 +115,9 @@ img {
 
   nav {
     display: none;
+  }
+
+  h1 {
+    page-break-before: always;
   }
 }
