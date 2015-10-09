@@ -13,6 +13,7 @@ Commands
 --------
 
 `make pdf-ieee`: Produce a PDF file in the IEEE format
+
 `make pdf-html`: Produce an HTML file in the IEEE format
 
 Bibliography

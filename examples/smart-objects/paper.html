@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Clay McLeod, University of Mississippi, {clmcleod}@go.olemiss.edu">
+  <title>Context-Aware Smart Objects in Enterprise: A Brief Survey</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="assets/fonts/cm/cm.css">
+  <link rel="stylesheet" href="assets/css/ieee.css">
+</head>
+<body>
+<header>
+<h1 class="title">Context-Aware Smart Objects in Enterprise: A Brief Survey</h1>
+<h2 class="author">Clay McLeod, University of Mississippi, {clmcleod}@go.olemiss.edu</h2>
+<h3 class="date">October 2015</h3>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#internet-of-things-iot-a-vision-architectural-elements-and-future-directions">Internet of Things (IoT): A Vision, Architectural Elements, and Future Directions</a></li>
+<li><a href="#adding-sense-to-the-internet-of-things---an-architecture-framework-for-smart-object-systems.">Adding sense to the Internet of Things - An architecture framework for Smart Object systems.</a></li>
+<li><a href="#the-intelligent-product-driven-supply-chain">The Intelligent Product Driven Supply Chain</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</nav>
+<div class="abstract">
+Abstract - This paper was written as a topic overview paper for CSCI 691 (Wireless and Sensor Networks) at the University of Mississippi. In this paper, we examine three papers related to the area of applying wireless sensor networks to create context-aware, &quot;smart&quot; objects that can greatly improve efficiency in many areas of an enterprise, such as production lines. We begin with a theoretical overview of wireless sensor networks and the internet of things, then move into more concrete implementation details concerning the &quot;Smart Object&quot; paradigm.
+</div>
+<div id="main">
+<h1 id="introduction">Introduction</h1>
+<p>The current state of academia and enterprise is sharply split on the implementation of recent advancements in networking technology and harvesting the benefits therein. Many researchers are producing promising results by creating highly efficient systems for organizing, processing, and reporting data through the use of <strong>wireless sensor networks</strong> (WSNs). Unfortunately, the adoption of these technologies in enterprise have been slow. In recent years, however, topics such as WSNs and the <strong>internet of things</strong> (IoT) have become increasingly prevalent in popular media. Figure 1 shows the frequency of keywords related to this phenomena searched in Google since 2004 <span class="citation" data-cites="iot-overview">(Gubbi et al. 2013)</span>. Each of these ideas are closely related to <strong>ubiquitous computing</strong> (ubicomp), an idea popularized by Mark Weiser, which asserts that computing will be highly available everywhere, from your appliances to sensors and more. In this paper, we will introduce the foundation concepts behind wireless sensor networks and the internet of things by examining <span class="citation" data-cites="iot-overview">(Gubbi et al. 2013)</span>. Next, we will narrow down our discussion to a particularly interesting paradigm called <strong>smart objects</strong> <span class="citation" data-cites="iot-sense">(López et al. 2012)</span>. Lastly, we will examine an actual implementation, called &quot;Auto ID&quot; in <span class="citation" data-cites="wongintelligent">(Wong et al., n.d.)</span> and discuss the benefits gained through implementing such a system in an enterprise environment.</p>
+<figure>
+<img src="assets/img/trends.png" title="Google Search Term Popularity: IoT, WSN, ubicomp" alt="Google Trends for IoT, WSNs, and ubicomp. (Gubbi et al. 2013)" /><figcaption>Google Trends for IoT, WSNs, and ubicomp. <span class="citation" data-cites="iot-overview">(Gubbi et al. 2013)</span></figcaption>
+</figure>
+<h1 id="internet-of-things-iot-a-vision-architectural-elements-and-future-directions">Internet of Things (IoT): A Vision, Architectural Elements, and Future Directions</h1>
+<p>Before we begin our discussion on the state of context-aware smart objects, we should define foundational ideas in the IoT paradigm concretely. For this task, we turn to <span class="citation" data-cites="iot-overview">(Gubbi et al. 2013)</span>, where the authors accurately describe the current state of the IoT, WSNs, and their position in the business landscape. For the purposes of this paper, the definition IoT is closely tied to ubicomp, which is the idea that computing is present everywhere in an environment. When framed this way, we can define the IoT is a computing network where background processing and sensing work in the background, <em>hidden</em> from the user. The authors suggest that the success of the IoT is proportional to the success of another facet of ubicomp, which is <strong>cloud computing</strong>. A precise definition of cloud computing is not within the scope of this paper and is left as an exercise to the reader. However, it is worth noting that the rise of inexpensive, on-demand server machines has greatly increased the viability of the IoT landscape.</p>
+<p>There are three distinct paradigms within the IoT that are discussed in the paper: (1) the internet oriented paradigm (middleware), (2) the things oriented paradigm (sensors), (3) and the semantic oriented paradigm (knowledge). The authors state that &quot;the usefulness of IoT can be unleashed only in an application domain where the three paradigms intersect&quot;. They discuss many precise definitions of the IoT, but ultimately come to the conclusion that the IoT is the &quot;interconnection of sensing and actuating devices providing the ability to share information across platforms through an unified framework, developing a common operating picture for enabling innovative applications. This is achieved by seamless large scale sensing, data analytics and information representation using cutting edge ubiquitous sensing and cloud computing&quot;.</p>
+<figure>
+<img src="assets/img/hypecycle.png" title="Hype Cycle" alt="Gartner 2011 Hype Cycle of Emerging Technologies (Source: Gartner Inc)" /><figcaption>Gartner 2011 Hype Cycle of Emerging Technologies (Source: Gartner Inc)</figcaption>
+</figure>
+<p>Next, the authors discuss the current trends in the IoT. Figure 2 shows the hype cycle around the internet of things, which represents the forecasted lifecycle of an idea over the next decade. The authors assert that the IoT will not be adopted by the market until about 5-10 years down the road, which explains the slow adoption of these ideas by corporations.</p>
+<p>The authors discuss many other topics concerning the IoT, such as visualization techniques, data storage, and a comparison of various cloud computing services. Although most of these sections do not directly relate to the topic of this paper, there are two sections in particular that are valuable to our discussion: (1) the RFID/WSN discussion and (2) the application of IoT to enterprise.</p>
+<p>This paper asserts that many of the IoT networks will be implemented through a WSN and radio frequency identification (RFID) technology. Devices equipped with RFID identify themselves by exposing an electronic chip with unique information describing the device stored on them. These chips act as a sort of passive barcode, meaning they are not directly powered by a battery. Rather, these tags harvest the energy of the scanner's signal to communicate it's ID back to the scanner. This design is particularly effective in enterprise situations, such as supply chain management, as objects in the supply chain do not need to be powered by a battery. This model of power consumption fits well with a WSN, which uses low cost, low power miniature devices to accomplish remote sensing networks.</p>
+<p>Second, the article discusses the application of a network of things within a work environment as an &quot;enterprise based application&quot;. The paper suggests several specific applications, such as security, automation, and climate control. One important definition that is introduced is the &quot;Smart Environment IoT&quot;, which concerns different environments such as factory floors or transportation systems automatically adjusting based on the current state of the environment. Figure 3 shows some of the sample applications suggested in the paper. With these foundational ideas defined, we can begin a discussion of the intricacies of implementing a smart environment.</p>
+<figure>
+<img src="assets/img/enterprise-applications.png" title="Enterprise Applications" alt="Some suggested applications of IoT to enterprise (Gubbi et al. 2013)" /><figcaption>Some suggested applications of IoT to enterprise <span class="citation" data-cites="iot-overview">(Gubbi et al. 2013)</span></figcaption>
+</figure>
+<h1 id="adding-sense-to-the-internet-of-things---an-architecture-framework-for-smart-object-systems.">Adding sense to the Internet of Things - An architecture framework for Smart Object systems.</h1>
+<p>Next, we examine <span class="citation" data-cites="iot-sense">(López et al. 2012)</span> where the authors provide a framework for realizing the previously mention smart environment, called smart objects. They begin by introducing a trivial approach to monitoring object states and then debunking that simple case. In this trivial approach, sensors are placed on the outer edges of some environment and detect when objects enter into that environment. They discuss several problems with this approach, such as inaccurate sensor data and proximity constraints. The authors suggest that as the amount of data we want to store about objects in an environment increases, we move away from this beacon-centric model and &quot;we witness an evolution toward object-centric systems, where manufactured items take control over the flow of information which was traditionally retrieved manually by human operators.&quot; The paper then goes on to define these smart objects as having 5 unique qualities. In particular, they</p>
+<ul>
+<li>possess a unique identity.</li>
+<li>are able to sense and store measurements made by sensor transducers associated with them.</li>
+<li>are able to make their identification, sensor measurements, and other attributes available to external entities such as other objects or systems.</li>
+<li>can communicate with other smart objects.</li>
+<li>can make decisions about themselves and their interactions with external entities.</li>
+</ul>
+<figure>
+<img src="assets/img/smart-object-architecture.png" title="Smart Objects Architecture" alt="Smart objects architecture presented in (López et al. 2012)" /><figcaption>Smart objects architecture presented in <span class="citation" data-cites="iot-sense">(López et al. 2012)</span></figcaption>
+</figure>
+<p>Figure 4 shows the proposed architecture for the smart objects paradigm. Concretely, consider a shipping container in a warehouse within which we need to monitor vital temperature information. This container would be outfitted with a low power, wireless sensor network node with sensors that can collect the temperature inside. Because this sensor is a member of a wireless sensor network, the information reported by its sensor can easily be queried across the network. Furthermore, if physical analysis is needed, the container can be identified by scanning the node's RFID information to uniquely identify it. This example clearly illustrates the fulfillment of the 5 points set forth by the authors of this paper.</p>
+<p>Next, the authors suggest the idea that having each node communicate with the receiver is good for simple systems, but not for large systems with a plethora of nodes. We can overcome this problem by having the nodes utilize ad-hoc networking to form small clusters. Each cluster elects a <strong>cluster head</strong>, which collects sensor information from all of the nodes within its cluster and communicates this information to the receiver as a proxy. Generally speaking, since being the cluster head consumes more energy, cluster heads should be rotated, so that no one node's battery is drained too much. Other considerations for choosing a cluster head include network strength, special abilities of the node, and processing power. Benefits of this approach are numerous, including <em>redundancy</em> (through double clustering), <em>energy conservation</em>, <em>no global information store</em> (saves memory), <em>no need for synchronization</em>, <em>mobility support</em>, and <em>low algorithmic complexity</em>.</p>
+<p>However, the smart objects in and of themselves are not enough to achieve the maximum benefit that these devices are capable of delivering - you need a cohesive interface with which users can interact and understand the information. You need to implement some <em>information infrastructure</em> within which the nodes should communicate. In this paper, the authors suggest an event-driven infrastructure for the nodes to communicate. Two types of events are recognized within their system:</p>
+<ul>
+<li>Events corresponding to network changes, such as a node entering or leaving a cluster.</li>
+<li>Events corresponding to a node reporting its sensor values.</li>
+</ul>
+<p>The authors give a name to the virtual representation of the network that can be presented to the end-user: <em>Smart Object network structure repository</em> (SONSR). This information is stored in the <em>gateway</em>, which is the location which receives all of the data sent from the WSN, decodes this information into something sensible, and present it to the end user. Two interfaces are exposed to the end-user to query the previously mentioned, event-driven data: (1) <strong>query interface</strong> to query data about the SONSR and (2) <strong>capture interface</strong> to query data concerning the sensor data reported by the nodes.</p>
+<p>This paper cites three main roadblocks to the widespread adoption of the smart object paradigm: (1) economic challenges, (2) privacy concerns, and (3) scalability challenges. Only recently did the price of RFID sensors drop to a reasonable price to be used at a large scale. However, if these RFID sensors travel with packages and are simply thrown away after delivery with the shipping container, the cost to embed RFID chips continues to be prohibitive. Therefore, any company looking to use this is a production system should reuse the RFID sensors and amortize the cost over the life of the sensor.</p>
+<p>Next, because packages are each tracked using a unique identifier that constantly reports information about itself (such as temperature, location, etc.), packages are no longer uniform and anonymous. Rather, anyone with access to the capture interface and the query interface could potentially determine enough data about a package to reveal it's contents.</p>
+<p>Lastly, the storage capacity needed to store historical data from the WSN increases linearly with the amount of nodes you place in the system. The authors suggest that for larger systems, historical data be passed through another layer that parses out important features and forgets the rest (essentially, dimensionality reduction).</p>
+<p>This work was not meant to be a practical study involving heavy experimentation and analysis. Rather, the authors aim to introduce the idea of the smart object paradigm into the literature and suggest some preliminary theoretical optimizations. However, this work could easily be built on by implementing some of the practical systems in a large scale test bed (like an industrial warehouse) and monitor concrete data.</p>
+<h1 id="the-intelligent-product-driven-supply-chain">The Intelligent Product Driven Supply Chain</h1>
+<p>Up until this point, we have defined theoretically:</p>
+<ul>
+<li>An overview of wireless sensor networks and the internet of things</li>
+<li>The benefits of deploying such a system in the enterprise</li>
+<li>An especially efficient paradigm for organizing information in the enterprise using WSNs.</li>
+</ul>
+<p>Although we have gained a bird's eye view of how these technologies can be applied to improve enterprise performance, we lack a specific implementation that can put these ideas into practice. Therefore, we will now examine <span class="citation" data-cites="wongintelligent">(Wong et al., n.d.)</span>, which describes an <strong>intelligent product</strong> supply chain (here, the authors use &quot;intelligent product&quot; in place of &quot;smart object&quot;).</p>
+<p>First, the authors begin by making a distinction between a <em>simple</em> product and a <em>complex</em> product. For their purposes, a <strong>simple product</strong> is defined as &quot;one that has only a few constituent parts, with relatively straightforward processes for production, packaging and logistics, and with simple information and material flows&quot;. On the other hand, a <strong>complex product</strong> has &quot;many constituent parts, each part manufactured to high precision backed up by a level of research and development&quot;, such as a computer server or a sports car, etc. In complex products, material flow is complicated by product returns, part malfunctions, etc.</p>
+<p>With regards to the intelligence that a product posses, two types of intelligence are proposed. The first is <strong>Level 1 product intelligence</strong>, which allows a product to communicate information about it's status, such as location, features, etc., back to the network. In other words, Level 1 intelligence is <em>information oriented</em>. The second type of product intelligence is <strong>Level 2 product intelligence</strong>. This type of intelligence is <em>decision oriented</em>, giving products the ability to influence it's own actions (such as self-organizing inventory). Obviously, Level 2 product intelligence is the more interesting idea. Figure 5 shows a simple intelligent spaghetti can with Level 1 product intelligence.</p>
+<figure>
+<img src="assets/img/smart-spaghetti.png" title="Smart Spaghetti Can" alt="Simple intelligent spaghetti can with Level 1 product intelligence (Wong et al., n.d.)" /><figcaption>Simple intelligent spaghetti can with Level 1 product intelligence <span class="citation" data-cites="wongintelligent">(Wong et al., n.d.)</span></figcaption>
+</figure>
+<p>The main focus of this paper is the author's examination of how their &quot;Auto ID&quot; system can &quot;enhance information collection and decision making systems across the supply chains of simple and complex products&quot;.</p>
+<p>For Level 1 products, the authors suggest the following benefits:</p>
+<ul>
+<li>Proof-of-delivery</li>
+<li>Process costing across all stages of production</li>
+<li>High-resolution product recall</li>
+<li>Real-time identification of bottlenecks and congestions.</li>
+<li>Enable <em>product-based accounting</em>, where the cost of the product varies based on the production and distribution rates (thereby, maximizing profits).</li>
+</ul>
+<p>These benefits are achieved through access to three main features about the product enabled by the intelligence system: (1) product status, (2) product tracking, and (3) product history access.</p>
+<p>For Level 2 product intelligence, the processes are much more complicated, but the benefits are also more numerous. In this level of intelligence, we can &quot;exploit the availability of real-time data to provide the opportunity to enable new processes and also control convention supply chain processes in a much more effective way&quot;. The authors list the following benefits for this level of intelligent product:</p>
+<ul>
+<li>Control supply chain processes more effectively</li>
+<li>Products individually tailored to specifications</li>
+<li>Late changes to orders more easily handled</li>
+<li>Customers could &quot;bid&quot; for the same product in the supply chain</li>
+<li>Inventory could be self-organizing</li>
+<li>Real-time planning based on congestion information</li>
+<li>Products can self-route through the production line</li>
+<li>Systems could be much more automated and alert a human only if a problem arises</li>
+</ul>
+<p>The paper suggests many benefits that arise in both Level 1 and Level 2 systems when applied to lifecycle applications. Although we cannot address all of them in this paper, a few of the more prevalent benefits are listed here.</p>
+<p><em>Level 1, simple intelligent products</em></p>
+<ul>
+<li>Advice about health warnings tailored to product and to individual</li>
+<li>Accurate product recall information</li>
+<li>High security by predicting theft</li>
+<li>Eliminate need to periodically stock shelves, allowing for efficient human hours</li>
+<li>Open the possibility for just-in-time production</li>
+</ul>
+<p><em>Level 1, complex intelligent products</em></p>
+<ul>
+<li>Proof-of-purchase travels with product for warranty tracking</li>
+<li>All data on product lifecycle stored for better maintenance and customer service</li>
+<li>Anti-theft measure lower insurance premiums</li>
+<li>Quality checking improved, customer confidence grows</li>
+</ul>
+<p><em>Level 2, simple intelligent products</em></p>
+<ul>
+<li>Automatic reordering of products based on delivery date</li>
+<li>Automatic shelf-replinishing</li>
+<li>Automatic inventory system</li>
+<li>Mixed palleting is easier</li>
+</ul>
+<p><em>Level 2, complex intelligent products</em></p>
+<ul>
+<li>Customer can trigger made-to-order production</li>
+<li>Efficiency can remain high by balancing production and demand</li>
+<li>Self-organizing distribution schedules</li>
+<li>Disposal or refurbishment costs can be automatically calculated</li>
+</ul>
+<p>The authors then discuss the benefits of an enterprise's ability to redesign its supply chain based on information gained from intelligent products. In the author's &quot;Auto ID&quot; implementation, information about a product is stored in a database (after being parsed by the gateway) in Physical Mark-up language (PML). Figure 6 shows how retaining all of this information on intelligent products would affect an enterprise's business model.</p>
+<figure>
+<img src="assets/img/business-model.png" title="Fully Integrated Supply Chain" alt="Fully Integrated Supply Chain (Wong et al., n.d.)" /><figcaption>Fully Integrated Supply Chain <span class="citation" data-cites="wongintelligent">(Wong et al., n.d.)</span></figcaption>
+</figure>
+<p>The most prevalent benefit discussed by the authors is a shift from selling a product to selling a service, similar to a drop-ship model. Products are produced on demand and contracts to maintain the products are easily fulfilled by the high availability of information about the product's lifecycle and health. This subscription model approach has huge implications on the profit margins a company can maintain. Furthermore, the granularity of what a company offers in this subscription model is much more flexible, allowing more customers to be reach.</p>
+<p>Next, the authors suggest that moving from a product-oriented enterprise to a service-oriented enterprise positively affects how customers view the company. Companies have more flexibility, becoming more dynamic and resourceful. Theoretically speaking, since information about products are continuously reporting back information about themselves, they could &quot;teach&quot; each other to become more effective at whatever they were designed to do.</p>
+<p>Lastly, the authors suggest that through the advent of their &quot;Auto ID&quot; technology, a standardized interface might emerge that could revolutionize this industry. This would allow corporations to compound off of each other's advances rather than compete against one another.</p>
+<p>The authors don't discuss many of the shortcomings of this model, except that it is susceptible to system shocks and disturbances due to connectivity and processing shortcomings. The authors could definitely improve on this research in two main ways: (1) they should focus less on promoting their &quot;Auto ID&quot; technology through the paper and focus more on investing in physical experimentation to back up their claims. (2) The authors should expound on failures that could arise in their system, such as node alienation, technology malfunction, and database malfunctions, and how to prevent these failures.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>In this paper, we first defined the theoretical concepts behind wireless sensor networks and the internet of things <span class="citation" data-cites="iot-overview">(Gubbi et al. 2013)</span>. These definitions were sufficient to construct the smart object paradigm, within which wireless sensor networks are attached to objects to allow these objects to gain some level of intelligence and ultimately improve efficiency in manufacturing systems <span class="citation" data-cites="iot-sense">(López et al. 2012)</span>. Lastly, we examined a specific implementation of these smart objects called &quot;Auto ID&quot;. According to the Hype graph (Figure 2), the adoption of smart objects into the enterprise is slow, but on track for implementation in the next 5-7 years. In each of these papers, we believe that each paper shares the same major shortcoming - lack of practical results. For the first paper <span class="citation" data-cites="iot-overview">(Gubbi et al. 2013)</span>, this assessment may be unfair, as the authors specifically state that their paper is simply an overview. However, the other two papers lack sufficient concrete evidence to back up a select few of their conclusions. This shortcoming might be because the availability of test-beds for large scale WSN are sparse to say the least. However, as the literature moves from theoretical ideas to more practical experimentation, we conclude that the smart object paradigm will become a highly valuable application of WSNs to the enterprise that will benefit the company and the consumer alike.</p>
+<div class="references">
+<div id="ref-iot-overview">
+<p>Gubbi, Jayavardhana, Rajkumar Buyya, Slaven Marusic, and Marimuthu Palaniswami. 2013. “Internet of Things (IoT): A Vision, Architectural Elements, and Future Directions.” <em>Future Generation Computer Systems</em> 29 (7). Elsevier: 1645–60.</p>
+</div>
+<div id="ref-iot-sense">
+<p>López, Tomás Sánchez, Damith C Ranasinghe, Mark Harrison, and Duncan McFarlane. 2012. “Adding Sense to the Internet of Things.” <em>Personal and Ubiquitous Computing</em> 16 (3). Springer: 291–308.</p>
+</div>
+<div id="ref-wongintelligent">
+<p>Wong, CY, D McFarlane, A Ahmad Zaharudin, and V Agarwal. n.d. “The Intelligent Product Driven Supply Chain.” Citeseer.</p>
+</div>
+</div>
+</div>
+</body>
+</html>
