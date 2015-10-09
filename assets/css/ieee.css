@@ -24,7 +24,8 @@ body {
 
 .author,
 .date {
-  font-size: 20px;
+  font-size: 22px;
+  padding-bottom: 1em;
 }
 
 .abstract {
@@ -104,5 +105,10 @@ img {
   body {
     margin-left: 5%;
     margin-right: 5%;
+    font-size: 12pt;
+  }
+
+  nav {
+    display: none;
   }
 }
