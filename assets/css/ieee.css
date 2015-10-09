@@ -104,8 +104,7 @@ img {
 @media print {
   @page {
     size: auto;
-      margin-left: 5%;
-      margin-right: 5%;
+    margin: 1in;
    }
 
   body {
@@ -116,7 +115,7 @@ img {
     display: none;
   }
 
-  h1:not(.title) {
+  h1 {
     page-break-before: always;
   }
 }
