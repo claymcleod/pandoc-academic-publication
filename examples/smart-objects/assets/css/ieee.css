@@ -124,8 +124,15 @@ img {
   }
 
   .references {
-    border-top: thin #CCC solid;
     page-break-before: always;
+  }
+
+  /* Add references page */
+
+  .references::before {
+    content: "References";
+    text-align: center;
+    font-weight: bold;
   }
 
   /* Automatic link showing */
