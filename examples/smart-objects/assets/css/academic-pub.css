@@ -1,12 +1,15 @@
-@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,300,500,700);
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,300,500,700);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
 
 body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: lighter;
+  line-height: 1.3;
   margin: auto;
   margin-left: 25%;
   margin-right: 25%;
   margin-top: 5em;
   text-align: justify;
-  line-height: 1.3;
 }
 
 #main {
@@ -43,7 +46,7 @@ h1 {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Ubuntu Mono', monospace;
+  font-family: 'Ubuntu', sans-serif;
   font-weight: normal;
   line-height: 1.1;
   margin: auto;
