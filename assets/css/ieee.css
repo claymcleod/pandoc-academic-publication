@@ -1,0 +1,94 @@
+body {
+  font-family: "Computer Modern Serif", serif;
+  margin: auto;
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top: 5em;
+  text-align: justify;
+}
+
+#main {
+  -webkit-column-count: 1;
+  -moz-column-count: 1;
+  column-count: 1;
+}
+
+/* Metadata declarations */
+
+.title {
+  font-size: 40px;
+}
+
+.author,
+.date {
+  font-size: 20px;
+}
+
+.abstract {
+  font-weight: bold;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+/* Heading declarations */
+
+h1 {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-align: center;
+  margin: auto;
+}
+
+h1:not(.title),
+h2:not(.author),
+h3:not(.date) {
+  font-variant: small-caps;
+}
+
+h1:not(.title){
+  counter-increment: section;
+}
+
+h1:not(.title)::before {
+  content: ""  counter(section, upper-roman) ". ";
+}
+
+nav {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+/* Equation declarations */
+
+.math {
+  margin: 12pt 0 8pt;
+  text-align: center;
+  position: relative;
+  counter-increment: equation;
+}
+
+.math::after {
+  content: "(" counter(equation) ")";
+  position: absolute;
+  text-align: right;
+  width: 100%;
+}
+
+/* Other */
+
+figcaption {
+  font-weight: bold;
+  text-align: center;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+.references {
+  border-top: thin #CCC solid;
+}
