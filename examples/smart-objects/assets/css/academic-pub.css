@@ -1,5 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,300,500,700);
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 @import url(https://fonts.googleapis.com/css?family=Lora:400,700);
 
 body {
@@ -36,6 +35,7 @@ body {
   font-weight: bold;
   padding-top: 1em;
   padding-bottom: 1em;
+  font-size: 14pt;
 }
 
 /* Heading declarations */
@@ -46,7 +46,7 @@ h1 {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: normal;
   line-height: 1.1;
   margin: auto;
