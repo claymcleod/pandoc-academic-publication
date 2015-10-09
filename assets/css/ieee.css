@@ -104,18 +104,20 @@ img {
 @media print {
   @page {
     size: auto;
-    margin: 1in;
+    margin: 0mm;
    }
 
   body {
     font-size: 12pt;
+    margin-left: 1in;
+    margin-right: 1in;
   }
 
   nav {
     display: none;
   }
 
-  h1 {
+  h1.not(.title) {
     page-break-before: always;
   }
 }
