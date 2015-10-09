@@ -120,4 +120,8 @@ img {
   h1:not(.title) {
     page-break-before: always;
   }
+
+  a[href]:after {
+    content: " (" attr(href) ") ";
+  }
 }
