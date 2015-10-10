@@ -13,7 +13,7 @@ Thanks for trying pandoc-academic-publication! I created this out of frustration
 
 You can format code by using the following markdown:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {.python .numberLines}
+~~~~ {.python .numberLines}
 import theano
 from theano import tensor as T
 
@@ -30,7 +30,7 @@ f = theano.function([a,b], c)
 
 # bind 1.5 to 'a', 2.5 to 'b', and evaluate 'c'
 assert 4.0 == f(1.5, 2.5)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~
 
 For more information, check the [pandoc documentation](http://pandoc.org/README.html#syntax-highlighting).
 
