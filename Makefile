@@ -6,3 +6,9 @@ html-ieee:
 
 pdf-ieee:
 	pandoc --filter pandoc-citeproc --biblio paper.bib -o paper.pdf -t latex --highlight-style pygments --standalone --variable documentclass=assets/latex/ieee paper.md
+
+
+.PHONY:
+clean:
+	rm -f paper.html
+	rm -f paper.pdf
