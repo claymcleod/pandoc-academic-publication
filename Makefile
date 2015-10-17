@@ -7,6 +7,12 @@ html-ieee:
 pdf-ieee:
 	pandoc --filter pandoc-citeproc --biblio paper.bib -o paper.pdf -t latex --highlight-style pygments --standalone --variable documentclass=assets/latex/ieee paper.md
 
+pdf-article:
+	pandoc --filter pandoc-citeproc --biblio paper.bib -o paper.pdf -t latex --highlight-style pygments --standalone --variable documentclass=article --variable biblio-style=acm paper.md
+
+pdf-memoir:
+	pandoc --filter pandoc-citeproc --biblio paper.bib -o paper.pdf -t latex --highlight-style pygments --standalone --variable documentclass=memoir --variable biblio-style=acm paper.md
+
 
 .PHONY:
 clean:
