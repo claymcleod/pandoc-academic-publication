@@ -18,6 +18,7 @@ Commands
 
 * `make pdf-ieee`: Produce a PDF file in the IEEE style
 
+
 Bibliography
 ------------
 
