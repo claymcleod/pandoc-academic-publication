@@ -1,0 +1,20 @@
+h1, h2, h3, h4, h5, h6, body {
+  font-family: "Computer Modern Serif", serif;
+}
+
+h1:not(.title),
+h2:not(.author),
+h3:not(.date) {
+  font-variant: small-caps;
+}
+
+h1:not(.title)::before {
+  content: ""  counter(section, upper-roman) ". ";
+}
+
+.math::after {
+  content: "(" counter(equation) ")";
+  position: absolute;
+  text-align: right;
+  width: 100%;
+}
